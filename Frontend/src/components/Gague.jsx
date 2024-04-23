@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 function Gague() {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
 
     const resetCount = () => {
         setCount(0)
@@ -13,7 +13,7 @@ function Gague() {
       <>
         <h1>Energy Counter</h1>
         <div className="energy-Display">
-          <p>
+          <p role="counter">
             {count}
             
           </p>
