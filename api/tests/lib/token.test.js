@@ -2,7 +2,7 @@ const { generateToken, decodeToken } = require("../../lib/token");
 
 describe("TokenGenerator", () => {
   describe("jsonwebtoken", () => {
-    test("returns a token containing user_id that is valid for 10 minutes", () => {
+    test("returns a token containing user_id that is valid for 30 minutes", () => {
       const id_1 = 1;
       const id_2 = 2;
 
@@ -18,7 +18,7 @@ describe("TokenGenerator", () => {
       expect(payload_1.user_id).toEqual(id_1);
       expect(payload_2.user_id).toEqual(id_2);
 
-      // Token is valid for 600 seconds (30 minutes)
+      // Token is valid for 1800 seconds (30 minutes)
       expect(payload_1.exp - payload_1.iat).toEqual(1800);
     });
   });
