@@ -96,4 +96,19 @@ describe("Buttons Test Suite", () => {
     expect(counter.textContent).toEqual("1")
     
   });
+    test("Test that When User clicks Power Down Button once and Power Up Button Twice , Counter number changes to 1", async () =>  {
+    const user = userEvent.setup()
+    render(<Buttons />);
+    const powerDownButton = screen.getByTestId("button-test-down");
+    const powerUpButton = screen.getByTestId("button-test-up");
+    const counter = screen.getByTestId("counter-test")
+
+    await user.click(powerDownButton)
+    await user.click(powerUpButton)
+    await user.click(powerUpButton)
+    
+
+    expect(counter.textContent).toEqual("1")
+
+  });
 });
