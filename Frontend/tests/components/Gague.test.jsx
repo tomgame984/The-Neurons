@@ -6,10 +6,10 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 
 describe('Unit testing for Gague', () => {
-    test('When Dashboard is loaded, counter is rendered as 1', () => {
+    test('When Dashboard is loaded, counter is rendered as 0', () => {
         render(<Gague />)
         const counterDisplay = screen.getByTestId('counter')
-        expect(counterDisplay.textContent).toBe("1")
+        expect(counterDisplay.textContent).toBe("0")
     }
     )
     test('When Dashboard is loaded, the reset button is rendered', () => {

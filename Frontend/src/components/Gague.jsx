@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Buttons from './Buttons'
 
 
 
 function Gague() {
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(0)
 
     const resetCount = () => {
         setCount(0)
@@ -17,6 +18,9 @@ function Gague() {
             {count}
             
           </p>
+
+          <Buttons setCount={setCount} count={count}/>
+
           <button 
           onClick={resetCount}
           alt="reset-button"
