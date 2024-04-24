@@ -1,18 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './App.css'
+
 import Buttons from './components/Buttons'
 
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Dashboard } from './pages/Dashboard'
 
+
+const router = createBrowserRouter([
+  {
+    path: "/Dashboard",
+    element: <Dashboard />,
+  }
+]);
+
+const App = () => {
   return (
     <>
+
         <Buttons />
+
+      <RouterProvider router={router} />
+
     </>
-  )
-}
+  );
+};
 
 export default App
