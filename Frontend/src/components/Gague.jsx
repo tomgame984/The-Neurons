@@ -13,7 +13,7 @@ function Gague() {
       <>
         <h1>Energy Counter</h1>
         <div className="energy-Display">
-          <p role="counter">
+          <p data-testid="counter">
             {count}
             
           </p>
