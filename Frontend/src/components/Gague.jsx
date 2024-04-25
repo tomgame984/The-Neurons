@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Buttons from './Buttons'
-import * as React from 'react';
-import { Gauge } from '@mui/x-charts/Gauge';
 import {
+  Gauge,
   GaugeContainer,
   GaugeValueArc,
   GaugeReferenceArc,
@@ -24,18 +23,18 @@ function GaugePointer() {
   };
   return (
     <g>
-      <circle cx={cx} cy={cy} r={5} fill="red" />
+      <circle cx={cx} cy={cy} r={7} fill="#474973" />
       <path
         d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-        stroke="red"
-        strokeWidth={3}
+        stroke="#474973"
+        strokeWidth={5}
       />
     </g>
   );
 }
 
 function Gague() {
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(0)
 
     const resetCount = () => {
         setCount(0)
@@ -53,9 +52,17 @@ function Gague() {
       endAngle={70}
       value={count}
       >
-    
-      <GaugeReferenceArc />
-      <GaugeValueArc />
+        <defs>
+        <linearGradient id="gaugeGradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#E76F51" />
+          <stop offset="100%" stopColor="#55a630" />
+        </linearGradient>
+      </defs>
+    <GaugeReferenceArc
+        sx={{
+          fill: "url(#gaugeGradient)",
+        }}
+      />
       <GaugePointer />
       </GaugeContainer>
         <div className="energy-Display">
