@@ -1,4 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import HorizontalRoleIcon from '@mui/icons-material/HorizontalRule';
+
 
 const Buttons = (props) => {
 
@@ -12,10 +17,25 @@ const Buttons = (props) => {
     }
     return (
         <div role="power-buttons" >
-        <button data-testid="button-test-down" onClick={decrementCounter}>Power Down</button>
-        
-        <button data-testid="button-test-up" onClick={incrementCounter}>Power Up</button>
-        
+        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+        <Fab 
+        data-testid="button-test-down" 
+        color="secondary" 
+        aria-label="subtract" 
+        onClick={decrementCounter}
+        sx={{ width: '80px', height: '80px' }} 
+        >
+        <HorizontalRoleIcon />
+        </Fab>
+        <Fab data-testid="button-test-up" 
+        color="primary" 
+        aria-label="add" 
+        onClick={incrementCounter}
+        sx={{ width: '80px', height: '80px' }}
+        >
+        <AddIcon />
+        </Fab>
+        </Box>        
         </div>
     );    
 }
