@@ -35,7 +35,7 @@ function GaugePointer() {
 }
 
 function Gague() {
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(0)
 
     const resetCount = () => {
         setCount(0)
