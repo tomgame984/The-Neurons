@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Buttons from './Buttons'
-import * as React from 'react';
-import { Gauge } from '@mui/x-charts/Gauge';
 import {
+  Gauge,
   GaugeContainer,
   GaugeValueArc,
   GaugeReferenceArc,
