@@ -52,7 +52,6 @@ setNeurodiversity(event.target.value);
 
 return (
 <>
-    <title role="signup-page-title">Signup Page</title>
     <h2>Signup</h2>
     <form onSubmit={handleSubmit}>
     <label htmlFor="name">First Name:</label>
