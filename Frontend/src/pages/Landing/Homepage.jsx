@@ -4,7 +4,7 @@ export const HomePage = () => {
 
     return(
         <>
-        
+        <title role="home-page-title">Home Page</title>
             <LoginPage />
         
         <div role="signup-navigation-link">

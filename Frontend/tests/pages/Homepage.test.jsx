@@ -10,8 +10,11 @@ describe("Home page unit testing", () => {
         render(<HomePage />)
         const loginHeading = screen.getByRole("login-heading")
         const loginForm = screen.getAllByRole("login-form")
+        const homePageTitle = screen.getAllByRole("home-page-title")
         expect(loginForm).to.exist
+        expect(homePageTitle).to.exist
         expect(loginHeading.textContent).toBe("Login")
+        expect(homePageTitle.textContent).toBe("Home Page")
     })
 
     test("that Homepage has navigate link to signup route", () => {
