@@ -1,45 +1,68 @@
 import React, { useState } from "react";
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import HorizontalRoleIcon from '@mui/icons-material/HorizontalRule';
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import HorizontalRoleIcon from "@mui/icons-material/HorizontalRule";
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
 import Box from '@mui/material/Box';
 
+const actions = [
+    { icon: <FileCopyIcon />, name: 'Copy' },
+    { icon: <SaveIcon />, name: 'Save' },
+    { icon: <PrintIcon />, name: 'Print' },
+    { icon: <ShareIcon />, name: 'Share' },
+  ];
 
 const Buttons = (props) => {
+  const incrementCounter = () => {
+    if (props.count <= 9) {
+      props.setCount(props.count + 1);
+    }
+  };
 
-    const incrementCounter=() => {
-        if (props.count <= 9){
-        props.setCount(props.count + 1)
-        }
-    };
-
-
-    const decrementCounter=() => {
-        if (props.count >= -9){
-        props.setCount(props.count - 1) 
-        }
-    };
-    return (
-        <div role="power-buttons" >
-        <Box sx={{ '& > :not(style)': { m: 1 } }}>
-        <Fab 
-        data-testid="button-test-down" 
-        color="#E76F51"
-        aria-label="subtract" 
-        onClick={decrementCounter}
-        sx={{backgroundColor: '#E76F51', width: '80px', height: '80px' }} 
+  const decrementCounter = () => {
+    if (props.count >= -9) {
+      props.setCount(props.count - 1);
+    }
+  };
+  return (
+    <div role="power-buttons">
+      <Box sx={{height:"100px", width:"600px", flexGrow:1}}>
+      <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          sx={{ Color: "#55a630", display: "inline-block", marginRight:"-150px"}}
+          icon={<SpeedDialIcon />}
+          direction="left"
         >
-        <HorizontalRoleIcon />
-        </Fab>
-        <Fab data-testid="button-test-up" 
-        aria-label="add" 
-        onClick={incrementCounter}
-        sx={{ backgroundColor: '#55a630', width: '80px', height: '80px' }}
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+            />
+          ))}
+        </SpeedDial>
+        <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          sx={{ Color: "#55a630", display: "inline-block"}}
+          icon={<SpeedDialIcon />}
+          direction="right"
         >
-        <AddIcon />
-        </Fab>
-        </Box>        
-        </div>
-    );    
-}
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+            />
+          ))}
+        </SpeedDial>
+      </Box>
+    </div>
+  );
+};
 export default Buttons;
