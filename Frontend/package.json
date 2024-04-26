@@ -12,6 +12,11 @@
     "jest": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
+    "@mui/x-charts": "^7.3.0",
     "@testing-library/react": "^15.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

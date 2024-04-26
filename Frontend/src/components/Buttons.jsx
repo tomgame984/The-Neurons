@@ -1,21 +1,44 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import HorizontalRoleIcon from '@mui/icons-material/HorizontalRule';
+
 
 const Buttons = (props) => {
 
     const incrementCounter=() => {
+        if (props.count <= 9){
         props.setCount(props.count + 1)
+        }
     };
 
 
     const decrementCounter=() => {
-        props.setCount(props.count - 1)
-    }
+        if (props.count >= -9){
+        props.setCount(props.count - 1) 
+        }
+    };
     return (
         <div role="power-buttons" >
-        <button data-testid="button-test-down" onClick={decrementCounter}>Power Down</button>
-        
-        <button data-testid="button-test-up" onClick={incrementCounter}>Power Up</button>
-        
+        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+        <Fab 
+        data-testid="button-test-down" 
+        color="#E76F51"
+        aria-label="subtract" 
+        onClick={decrementCounter}
+        sx={{backgroundColor: '#E76F51', width: '80px', height: '80px' }} 
+        >
+        <HorizontalRoleIcon />
+        </Fab>
+        <Fab data-testid="button-test-up" 
+        aria-label="add" 
+        onClick={incrementCounter}
+        sx={{ backgroundColor: '#55a630', width: '80px', height: '80px' }}
+        >
+        <AddIcon />
+        </Fab>
+        </Box>        
         </div>
     );    
 }
