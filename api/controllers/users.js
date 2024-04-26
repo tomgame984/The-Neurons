@@ -27,11 +27,47 @@ const create = async (req, res) => {
   }
 };
 
+const updateUserEventHistory = async (req, res) => {
+  const user = await User.find({ id: req.userId });
+  const token = generateToken(req.userId);
+
+  User.findById(userId, (err, user) => {
+    if (err) {
+      console.error('Error fetching user:', err);
+      return;
+    }
+  
+    if (!user) {
+      console.error('User not found');
+      return;
+    }
+  
+    // Modify the event_history field
+    user.event_history = {
+      category: "",
+      description: "",
+      eventScore: "",
+      dateOfEntry: new Date(),
+    };
+  
+    // Save the updated user document back to the database
+    user.save((err, updatedUser) => {
+      if (err) {
+        console.error('Error saving updated user:', err);
+        return;
+      }
+  
+      console.log('User updated successfully:', updatedUser);
+    });
+  });
+}
+
 const UsersController = {
   create: create,
   getUser: getUser,
-};
+  updateUserEventHistory: updateUserEventHistory,
 
+};
 
 module.exports = UsersController;
 
