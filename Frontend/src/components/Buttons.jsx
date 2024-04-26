@@ -10,6 +10,9 @@ import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
 import Box from "@mui/material/Box";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
+
 
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
@@ -35,9 +38,19 @@ const Buttons = (props) => {
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: "absolute", bottom: 40, right: 320 }}
-        icon={<SpeedDialIcon />}
-        direction="left"
+        sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630" }}
+        FabProps={{
+          sx: {
+            bgcolor: "#55A630",
+            width: "80px",
+            height: "80px",
+            "&:hover": {
+              bgcolor: "#55A630",
+            },
+          },
+        }}
+        icon={<KeyboardDoubleArrowUpIcon />}
+        direction="right"
       >
         {actions.map((action) => (
           <SpeedDialAction
@@ -47,11 +60,22 @@ const Buttons = (props) => {
           />
         ))}
       </SpeedDial>
+
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: "absolute", bottom: 40, left: 320 }}
-        icon={<SpeedDialIcon />}
-        direction="right"
+        sx={{ position: "absolute", bottom: 40, right: 320}}
+        FabProps={{
+          sx: {
+            bgcolor: "#E76F51",
+            width: "80px",
+            height: "80px",
+            "&:hover": {
+              bgcolor: "#E76F51",
+            },
+          },
+        }}
+        icon={<KeyboardDoubleArrowDownIcon />}
+        direction="left"
       >
         {actions.map((action) => (
           <SpeedDialAction
