@@ -61,7 +61,7 @@ return (
     />
     <input role="submit-button" id="submit" type="submit" value="Submit" />
     </form>
-    <p style={{color: "red"}}>{errorMessage}</p>
+    <p role="login-error-msg" style={{color: "red"}}>{errorMessage}</p>
 </>
 );
 };

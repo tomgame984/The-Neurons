@@ -18,7 +18,11 @@ try {
     await signup(name, surname, email, password, neurodiversity);
     navigate("/");
 } catch (err) {
+    console.log("i am here")
     console.error(err);
+    console.log("line break")
+    console.error("error msg", err.message);
+    setErrorMessage(err.message)
     navigate("/signup");
 }
 };
@@ -96,7 +100,12 @@ return (
     
     <input role="submit-button" id="submit" type="submit" value="Submit" />
     </form>
-    <p style={{color: "red"}}>{errorMessage}</p>
+
+    {errorMessage && (
+    <div role="signup-error-msg" style={{ color: 'white', marginTop: '0.5rem' }}>
+    {errorMessage}
+    </div>
+)}
 </>
 );
 };

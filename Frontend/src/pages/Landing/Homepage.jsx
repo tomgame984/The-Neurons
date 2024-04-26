@@ -8,7 +8,7 @@ export const HomePage = () => {
             <LoginPage />
         
         <div role="signup-navigation-link">
-            <a href="/signup">Join The Neurons</a>
+            <a href="/signup" role="navigation-to-signup">Join The Neurons</a>
         </div>
         </>
     )

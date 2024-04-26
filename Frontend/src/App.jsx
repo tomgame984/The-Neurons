@@ -4,7 +4,6 @@ import { Dashboard } from './pages/Dashboard'
 import { HomePage } from "./pages/Landing/Homepage";
 import { SignupPage } from "./pages/SignupPage"
 
-
 const router = createBrowserRouter([
   {
     path: "/",
