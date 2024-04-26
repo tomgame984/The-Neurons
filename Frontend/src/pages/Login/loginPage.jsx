@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { login } from "../../services/authentication";
+import { login } from "../../services/authentication";
 
 export const LoginPage = () => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [errorMessage, setErrorMessage] = useState("")
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 const handleSubmit = async (event) => {
 event.preventDefault();
@@ -24,7 +24,7 @@ try {
     setPassword("")
     console.log(email)
     setErrorMessage("Invalid email or password. Please try again.")
-    navigate("/Homepage");
+    navigate("/");
 }
 };
 
