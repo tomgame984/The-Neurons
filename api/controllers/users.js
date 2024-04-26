@@ -12,10 +12,10 @@ const getUser = async (req, res) => {
 
 // line 15-18 will have to be changed based on the mongoose DB
 const create = async (req, res) => {
-  const { firstName, lastName, bio, email, password, image } = req.body;
+  const {  name, surname, email, password, neurodiversity } = req.body;
 
   try {
-    const user = new User({ firstName, lastName, bio, email, password, image });
+    const user = new User({ name, surname, email, password, neurodiversity });
     await user.save();
 
 

@@ -14,7 +14,7 @@ const createToken = async (req, res) => {
       return res.status(401).json({ message: "User not found" });
     }
     
-    const secret = "Awe5some$!"; //this is our salt, this can't be part of the code, will have to move to .env
+    const secret = process.env.SECRET; //this is our salt, this can't be part of the code, will have to move to .env
     const isPasswordValid = await bcrypt.compare(password + secret, user.password );
     console.log(isPasswordValid)
     if (!isPasswordValid) {
