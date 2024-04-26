@@ -5,8 +5,8 @@ const UserSchema = new mongoose.Schema({
   surname: { type: String },
   email: { type: String },
   password: { type: String },
-  score: { type: Number },
   neurodiversity: { type: String },
+  score: { type: Number },
   event_history: { type: Object, required: false }
 });
 
