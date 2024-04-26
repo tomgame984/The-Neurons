@@ -36,7 +36,7 @@ function Gauge(props) {
       <GaugeContainer
         valueMin={-10}
         valueMax={10}
-        width={500}
+        width={600}
         height={200}
         startAngle={-70}
         endAngle={70}
