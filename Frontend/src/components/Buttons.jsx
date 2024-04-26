@@ -54,9 +54,11 @@ const Buttons = (props) => {
       >
         {actions.map((action) => (
           <SpeedDialAction
+          sx={{color: 'white', backgroundColor: '#55A630', "&:hover": {bgcolor: "#55A630"}}}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
+            onClick={incrementCounter}
           />
         ))}
       </SpeedDial>
@@ -79,9 +81,11 @@ const Buttons = (props) => {
       >
         {actions.map((action) => (
           <SpeedDialAction
+            sx={{color: 'white', backgroundColor: '#E76F51', "&:hover": {bgcolor: "#E76F51"}}}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
+            onClick={decrementCounter}
           />
         ))}
       </SpeedDial>

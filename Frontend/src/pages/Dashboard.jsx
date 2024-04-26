@@ -9,11 +9,11 @@ export const Dashboard = () => {
   const [count, setCount] = useState(0);
 
 return (
-    <Container sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundColor:"#eee"}}>
+    <Container sx={{padding: '12px', borderRadius: '80px', display: "flex", justifyContent: "center", alignItems: "center", backgroundColor:"#eee"}}>
         <div>
             <h1 style={{textAlign:"center"}}>Energy Counter</h1>
             <Gauge setCount={setCount} count={count}/>
-            <Buttons/>
+            <Buttons setCount={setCount} count={count}/>
             <ResetButton setCount={setCount} />
         </div>
     </Container>
