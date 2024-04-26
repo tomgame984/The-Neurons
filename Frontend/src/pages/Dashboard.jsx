@@ -8,14 +8,24 @@ import { green } from "@mui/material/colors";
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
 
-return (
-    <Container sx={{padding: '12px', borderRadius: '80px', display: "flex", justifyContent: "center", alignItems: "center", backgroundColor:"#eee"}}>
-        <div>
-            <h1 style={{textAlign:"center"}}>Energy Counter</h1>
-            <Gauge setCount={setCount} count={count}/>
-            <Buttons setCount={setCount} count={count}/>
-            <ResetButton setCount={setCount} />
-        </div>
+  return (
+    <Container
+      sx={{
+        borderRadius: "80px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#eee",
+        boxShadow: "0px 0px 58px -29px rgba(0,0,0,0.75)",
+        minWidth: "690px"
+      }}
+    >
+      <div>
+        <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
+        <Gauge setCount={setCount} count={count} />
+        <Buttons setCount={setCount} count={count} />
+        <ResetButton setCount={setCount} />
+      </div>
     </Container>
-);
+  );
 };

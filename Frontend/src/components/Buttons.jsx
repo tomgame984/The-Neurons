@@ -38,7 +38,7 @@ const Buttons = (props) => {
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630" }}
+        sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630"}}
         FabProps={{
           sx: {
             bgcolor: "#55A630",
