@@ -18,7 +18,8 @@ const response = await fetch(`${BACKEND_URL}/tokens`, requestOptions);
 
 if (response.status === 201) {
 let data = await response.json();
-return [data.token, data.userId];
+console.log(data.events)
+return [data.token, data.userId, data.events];
 } else {
 throw new Error(
     `Received status ${response.status} when logging in. Expected 201`

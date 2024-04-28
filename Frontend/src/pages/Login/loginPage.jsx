@@ -12,9 +12,12 @@ const navigate = useNavigate();
 const handleSubmit = async (event) => {
 event.preventDefault();
 try {
-    const [token, userId] = await login(email, password);
+    const [token, userId, event_history] = await login(email, password);
+    console.log(userId)
     localStorage.setItem("token", token);
     localStorage.setItem("userId", userId)
+    localStorage.setItem("events", JSON.stringify(event_history));
+
     setEmail("")
     setPassword("")
     navigate("/Dashboard");
