@@ -9,7 +9,9 @@ const UserSchema = new mongoose.Schema({
   neurodiversity: { type: String },
   score: { type: Number, default: 0 },
   event_history: { type: Object, default: {} }
-});
+},
+{minimize: false}
+);
 
 UserSchema.pre('save', async function(next) {
   const pattern = /^(?=.*[A-Z])(?=.*[!@$%&])(?=.*[a-z]).{8,}$/ // has to have one of these symbols, !@$%& and at least 8 charachters and a capital letter

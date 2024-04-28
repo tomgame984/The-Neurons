@@ -22,45 +22,40 @@ const create = async (req, res) => {
     console.log("User created, id:", user._id.toString());
     res.status(201).json({ message: "OK" });
   } catch (err) {
-    console.error(err.message);
+    console.log(err.message);
     res.status(400).json({ message: err.message });
   }
 };
 
 const updateUserEventHistory = async (req, res) => {
-  const user = await User.find({ id: req.userId });
-  const token = generateToken(req.userId);
-
-  User.findById(userId, (err, user) => {
-    if (err) {
-      console.error('Error fetching user:', err);
-      return;
-    }
-  
-    if (!user) {
-      console.error('User not found');
-      return;
-    }
-  
-    // Modify the event_history field
-    user.event_history = {
-      category: "",
-      description: "",
-      eventScore: "",
-      dateOfEntry: new Date(),
-    };
-  
-    // Save the updated user document back to the database
-    user.save((err, updatedUser) => {
-      if (err) {
-        console.error('Error saving updated user:', err);
-        return;
+  try {
+      const user = await User.findOne({ id: req.userId });
+      console.log(user)
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
       }
-  
-      console.log('User updated successfully:', updatedUser);
-    });
-  });
+
+      const event = req.body;
+      console.log(event)
+      const token = generateToken(req.userId);
+
+      // Modify the event_history field
+      const newEvent = { ...event, timestamp: Date.now() };
+      user.event_history = { ...user.event_history, [`event${Object.entries(user.event_history).length + 1}`]: newEvent };
+
+
+      // Save the updated user document back to the database
+      await user.save();
+      
+      return res.status(200).json({ message: "User event history updated successfully", token });
+  } catch (error) {
+      console.error("Error updating user event history:", error);
+      return res.status(500).json({ message: "Internal server error" });
+  }
 }
+
+
+
 
 const UsersController = {
   create: create,
