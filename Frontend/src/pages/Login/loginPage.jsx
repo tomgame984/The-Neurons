@@ -62,7 +62,7 @@ return (
         value={password}
         onChange={handlePasswordChange}
     />
-    <input role="submit-button" id="submit" type="submit" value="Submit" />
+    <input role="submit-button" id="submit" type="submit" value="Log in" />
     </form>
     <p role="login-error-msg" style={{color: "red"}}>{errorMessage}</p>
 </>

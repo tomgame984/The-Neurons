@@ -1,8 +1,8 @@
 import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { expect, vi } from "vitest";
 import { useNavigate } from "react-router-dom";
-import { vi } from "vitest";
 import { HomePage } from "../../src/pages/Landing/Homepage";
 
 // Mocking React Router's useNavigate function
@@ -11,6 +11,7 @@ vi.mock("react-router-dom", () => {
     const useNavigateMock = () => navigateMock; // Create a mock function for useNavigate
     return { useNavigate: useNavigateMock };
     });
+
 
 describe("Home page unit testing", () => {
     test("that Homepage renders login component", () => {
@@ -22,7 +23,7 @@ describe("Home page unit testing", () => {
         expect(loginHeading.textContent).toBe("Login")
     })
 
-    test("that Homepage has navigate link to signup route", () => {
+    test("that Homepage has navigate button to signup route", () => {
 
         render(<HomePage />)
         const signupLink = screen.getByRole("signup-navigation-link")
@@ -32,8 +33,6 @@ describe("Home page unit testing", () => {
 
     test("navigates to /signup when clicked", async () => {
         render(<HomePage />)
-
-        // const user = userEvent.setup();
         const navigateMock = useNavigate();
         const navigationToSignup = screen.getByRole("navigation-to-signup")
         
@@ -41,6 +40,6 @@ describe("Home page unit testing", () => {
             await userEvent.click(navigationToSignup);
         });
     
-        expect(navigateMock).toHaveBeenCalledWith("/signup");
+        expect(navigateMock).toBeCalledWith("/signup")
         });
 })

@@ -30,16 +30,14 @@ const create = async (req, res) => {
 const updateUserEventHistory = async (req, res) => {
   try {
       const user = await User.findOne({ id: req.userId });
-      console.log(user)
+  
       if (!user) {
           return res.status(404).json({ message: "User not found" });
       }
 
       const event = req.body;
-      console.log(event)
       const token = generateToken(req.userId);
-
-      // Modify the event_history field
+      // Updating the event_history object
       const newEvent = { ...event, timestamp: Date.now() };
       user.event_history = { ...user.event_history, [`event${Object.entries(user.event_history).length + 1}`]: newEvent };
 
@@ -50,11 +48,9 @@ const updateUserEventHistory = async (req, res) => {
       return res.status(200).json({ message: "User event history updated successfully", token });
   } catch (error) {
       console.error("Error updating user event history:", error);
-      return res.status(500).json({ message: "Internal server error" });
+      return res.status(400).json({ message: err.message });
   }
 }
-
-
 
 
 const UsersController = {

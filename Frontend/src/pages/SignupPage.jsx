@@ -98,7 +98,7 @@ return (
         onChange={handleNeurodiversityChange}
     />
     
-    <input role="submit-button" id="submit" type="submit" value="Submit" />
+    <input role="submit-button" id="submit" type="submit" value="Join us" />
     </form>
 
     {errorMessage && (
