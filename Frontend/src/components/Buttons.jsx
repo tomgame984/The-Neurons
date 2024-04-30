@@ -22,6 +22,13 @@ const actions = [
 ];
 
 const Buttons = (props) => {
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = (event) => {
+  setOpen(!open);
+  };
+
   const incrementCounter = () => {
     if (props.count <= 9) {
       props.setCount(props.count + 1);
@@ -37,7 +44,9 @@ const Buttons = (props) => {
   return (
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
-        ariaLabel="SpeedDial basic example"
+        onClick={handleOpen}
+        open={open}
+        ariaLabel="Power Up"
         sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630"}}
         FabProps={{
           sx: {
@@ -59,12 +68,15 @@ const Buttons = (props) => {
             icon={action.icon}
             tooltipTitle={action.name}
             onClick={() => {incrementCounter(); props.setOpen(true)}}
+            data-testid="speed-dial-action-Increase Speed"
           />
         ))}
       </SpeedDial>
 
       <SpeedDial
-        ariaLabel="SpeedDial basic example"
+        onClick={handleOpen}
+        open={open}
+        ariaLabel="Power Down"
         sx={{ position: "absolute", bottom: 40, right: 320}}
         FabProps={{
           sx: {
@@ -81,11 +93,13 @@ const Buttons = (props) => {
       >
         {actions.map((action) => (
           <SpeedDialAction
+          className="powerdown"
             sx={{color: 'white', backgroundColor: '#E76F51', "&:hover": {bgcolor: "#E76F51"}}}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
             onClick={() => {decrementCounter(); props.setOpen(true)}}
+            data-testid="speed-dial-action-Decrease Speed"
           />
         ))}
       </SpeedDial>

@@ -25,9 +25,9 @@ export const Dashboard = () => {
       <div>
         <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
         <Gauge setCount={setCount} count={count} />
-        <Buttons setCount={setCount} count={count} setOpen={setOpen}/>
-        <ResetButton setCount={setCount} />
+        <Buttons setCount={setCount} count={count} setOpen={setOpen} id="buttons"/>
         <ActivityForm open={open} setOpen={setOpen}></ActivityForm>
+        <ResetButton setCount={setCount} />
       </div>
     </Container>
   );
