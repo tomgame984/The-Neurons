@@ -108,7 +108,7 @@ describe("Signup Page unit testing", () => {
     expect(navigateMock).toHaveBeenCalledWith("/signup");
     });
 
-    test("throw an error on unsuccessful signup`", async () => {
+    test("throw an error on unsuccessful signup for missing password`", async () => {
         render(<SignupPage />);
         const user = userEvent.setup();
         const firstName = screen.getByRole("name")
@@ -132,4 +132,99 @@ describe("Signup Page unit testing", () => {
         });
     });
 
+    test("throw an error on unsuccessful signup for missing name`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const lastName = screen.getByRole("surname")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(lastName, "userlastName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+
+        
+    });
+
+    test("throw an error on unsuccessful signup for missing last name`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
     })
+    test("throw an error on unsuccessful signup for missing email`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const lastName = screen.getByRole("surname")
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(lastName, "userlastName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+    })
+    test("throw an error on unsuccessful signup for missing neurodiversity`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const lastName = screen.getByRole("surname")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(lastName, "userlastName")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(passwordInputEl, "ABCD1234$")
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+
+        
+    })
+})

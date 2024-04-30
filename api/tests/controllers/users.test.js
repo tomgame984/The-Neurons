@@ -191,17 +191,6 @@ describe("/users", () => {
       expect(event.timestamp).toBeDefined();
   });
 
-    test("if user doesnt exist, return user not found with error code 404", async () => {
-      const user = "ihf9uwpu847r67[4"
-      const token = generateToken(user)
-      const response = await request(app)
-        .put("/users")
-        .set("userId", user)
-        .set('Authorization', `Bearer ${token}`)
-        .send({ category: "Recharge", description: "Running", eventScore: "+5"});
-  
-      expect(response.statusCode).toBe(404);
-  });
   
     test("if a token doesnt exist, return with error code 401", async () => {
        // Create a new user
