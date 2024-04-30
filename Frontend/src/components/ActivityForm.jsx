@@ -11,7 +11,7 @@ const ActivityForm = (props) => {
             <>
                 <Box sx={{bgcolor:"#ddd", borderRadius:"30px", padding:"10px"}}>
                     <h2 style={{marginTop:"-5px"}}>Log Activity</h2>
-                    <IconButton onClick={props.open == false}>
+                    <IconButton onClick={set == false}>
                         <CloseIcon />
                     </IconButton>
                     <TextField id="outlined-basic" label="Description" variant="outlined"></TextField>
