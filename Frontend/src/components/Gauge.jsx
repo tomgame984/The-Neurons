@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Buttons from "./Buttons";
+import ResetButton from "../components/ResetButton";
+
 import {
   GaugeContainer,
   GaugeReferenceArc,
@@ -7,6 +9,7 @@ import {
 } from "@mui/x-charts/Gauge";
 
 function GaugePointer() {
+ 
   const { valueAngle, outerRadius, cx, cy } = useGaugeState();
 
   if (valueAngle === null) {
