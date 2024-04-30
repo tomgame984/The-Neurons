@@ -9,10 +9,9 @@ import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import Box from "@mui/material/Box";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
-import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
-
 
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
@@ -22,11 +21,21 @@ const actions = [
 ];
 
 const Buttons = (props) => {
+  const [openButton1, setOpenButton1] = useState(false);
+  const [openButton2, setOpenButton2] = useState(false);
 
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = (event) => {
-  setOpen(!open);
+  const handleOpenButton = (buttonNum) => {
+    if (buttonNum === 1) {
+      if (openButton2 === true && openButton1 === false) {
+        setOpenButton2(false);
+      }
+      setOpenButton1(!openButton1);
+    } else if (buttonNum === 2) {
+      if (openButton2 === false && openButton1 === true) {
+        setOpenButton1(false);
+      }
+      setOpenButton2(!openButton2);
+    }
   };
 
   const incrementCounter = () => {
@@ -44,10 +53,10 @@ const Buttons = (props) => {
   return (
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
-        onClick={handleOpen}
-        open={open}
+        onClick={() => handleOpenButton(1)}
+        open={openButton1}
         ariaLabel="Power Up"
-        sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630"}}
+        sx={{ position: "absolute", bottom: 40, left: 320, color: "#55A630" }}
         FabProps={{
           sx: {
             bgcolor: "#55A630",
@@ -63,21 +72,28 @@ const Buttons = (props) => {
       >
         {actions.map((action) => (
           <SpeedDialAction
-          sx={{color: 'white', backgroundColor: '#55A630', "&:hover": {bgcolor: "#55A630"}}}
+            sx={{
+              color: "white",
+              backgroundColor: "#55A630",
+              "&:hover": { bgcolor: "#55A630" },
+            }}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={() => {incrementCounter(); props.setOpen(true)}}
+            onClick={() => {
+              incrementCounter();
+              props.handleOpen();
+            }}
             data-testid="speed-dial-action-Increase Speed"
           />
         ))}
       </SpeedDial>
 
       <SpeedDial
-        onClick={handleOpen}
-        open={open}
+        onClick={() => handleOpenButton(2)}
+        open={openButton2}
         ariaLabel="Power Down"
-        sx={{ position: "absolute", bottom: 40, right: 320}}
+        sx={{ position: "absolute", bottom: 40, right: 320 }}
         FabProps={{
           sx: {
             bgcolor: "#E76F51",
@@ -93,12 +109,19 @@ const Buttons = (props) => {
       >
         {actions.map((action) => (
           <SpeedDialAction
-          className="powerdown"
-            sx={{color: 'white', backgroundColor: '#E76F51', "&:hover": {bgcolor: "#E76F51"}}}
+            className="powerdown"
+            sx={{
+              color: "white",
+              backgroundColor: "#E76F51",
+              "&:hover": { bgcolor: "#E76F51" },
+            }}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={() => {decrementCounter(); props.setOpen(true)}}
+            onClick={() => {
+              decrementCounter();
+              props.handleOpen();
+            }}
             data-testid="speed-dial-action-Decrease Speed"
           />
         ))}
