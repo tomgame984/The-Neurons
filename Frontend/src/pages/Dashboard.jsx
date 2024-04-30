@@ -1,32 +1,38 @@
-import Gague from "../components/Gague";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Gauge from "../components/Gauge"; // Add missing import statement for Gague component
+import Buttons from "../components/Buttons";
+import ResetButton from "../components/ResetButton";
+import { Container } from "@mui/material";
+import { green } from "@mui/material/colors";
 
 export const Dashboard = () => {
-    const [events, setEvents] = useState({});
+  const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        getUserEvents();
-    }, []);
-
-    const getUserEvents = () => {
-        const storedEvents = JSON.parse(localStorage.getItem("events"));
-        if (storedEvents) {
-            setEvents(storedEvents);
-        }
-    };
-
-    return (
-        <>
-            <div><Gague/></div>
-            <div>
-                {Object.keys(events).map((eventId) => (
-                    <div key={eventId} style={{ border: "1px solid black", padding: "10px", marginBottom: "10px" }}>
-                        <p role= "event-category">Category: {events[eventId].category}</p>
-                        <p role="event-description">Description: {events[eventId].description}</p>
-                        <p role= "event-score">Event Score: {events[eventId].eventScore}</p>
-                    </div>
-                ))}
-            </div>
-        </>
-    );
+  return (
+    <Container
+      sx={{
+        borderRadius: "80px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#eee",
+        boxShadow: "0px 0px 58px -29px rgba(0,0,0,0.75)",
+        minWidth: "690px"
+      }}
+    >
+      <div>
+        <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
+        <Gauge setCount={setCount} count={count} />
+        <Buttons setCount={setCount} count={count} />
+        <ResetButton setCount={setCount} />
+      </div>
+    </Container>
+       <div>
+        {Object.keys(events).map((eventId) => (
+        <div key={eventId} style={{ border: "1px solid black", padding: "10px", marginBottom: "10px" }}>
+        <p role= "event-category">Category: {events[eventId].category}</p>
+        <p role="event-description">Description: {events[eventId].description}</p>
+        <p role= "event-score">Event Score: {events[eventId].eventScore}</p>
+       </div>
+  );
 };

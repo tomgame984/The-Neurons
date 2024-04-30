@@ -73,18 +73,6 @@ describe("User model", () => {
     expect(user.password).toEqual("Abcde1234!");
   });
 
-  it("has a pic", () => {
-    const user = new User({
-      name: "Lana",
-      surname: "Del Rey",
-      email: "someone@example.com",
-      neurodiversity: "Autism",
-      password: "testpic!",
-    });
-    
-    expect(user.password).toEqual("testpic!");
-  });
-
   it("can list all users", async () => {
     const users = await User.find();
     expect(users).toEqual([]);
