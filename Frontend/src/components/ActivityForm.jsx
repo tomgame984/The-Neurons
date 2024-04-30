@@ -6,10 +6,9 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 
 const ActivityForm = (props) => {
-    const [increment, setIncrement] = useState(0)
+    const [increment, setIncrement] = useState("")
 
     const handleNumber = (num) => {
-        console.log(num)
         setIncrement(Number(num))
     };
 
@@ -43,7 +42,7 @@ const ActivityForm = (props) => {
             id="outlined-basic"
             label="Score"
             variant="outlined"
-            onChange={handleNumber}
+            onChange={(event) => {handleNumber(parseInt(event.target.value))}}
           ></TextField>
           <Button
             variant="contained"
