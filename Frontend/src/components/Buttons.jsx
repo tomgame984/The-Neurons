@@ -58,7 +58,7 @@ const Buttons = (props) => {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={incrementCounter}
+            onClick={() => {incrementCounter();}}
           />
         ))}
       </SpeedDial>
