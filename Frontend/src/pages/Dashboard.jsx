@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import Gauge from "../components/Gauge"; // Add missing import statement for Gague component
 import Buttons from "../components/Buttons";
 import ResetButton from "../components/ResetButton";
 import { Container } from "@mui/material";
 import { green } from "@mui/material/colors";
+import ActivityForm from "../components/ActivityForm";
 
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
@@ -25,7 +26,9 @@ export const Dashboard = () => {
         <Gauge setCount={setCount} count={count} />
         <Buttons setCount={setCount} count={count} />
         <ResetButton setCount={setCount} />
+      <ActivityForm></ActivityForm>
       </div>
     </Container>
   );
 };
+
