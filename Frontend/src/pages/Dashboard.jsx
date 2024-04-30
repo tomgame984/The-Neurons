@@ -8,7 +8,7 @@ import ActivityForm from "../components/ActivityForm";
 
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <Container
@@ -25,7 +25,7 @@ export const Dashboard = () => {
       <div>
         <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
         <Gauge setCount={setCount} count={count} />
-        <Buttons setCount={setCount} count={count} />
+        <Buttons setCount={setCount} count={count} setOpen={setOpen}/>
         <ResetButton setCount={setCount} />
         <ActivityForm open={open} setOpen={setOpen}></ActivityForm>
       </div>

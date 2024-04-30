@@ -58,7 +58,7 @@ const Buttons = (props) => {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={() => {incrementCounter();}}
+            onClick={() => {incrementCounter(); props.setOpen(true)}}
           />
         ))}
       </SpeedDial>
@@ -85,7 +85,7 @@ const Buttons = (props) => {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={decrementCounter}
+            onClick={() => {decrementCounter(); props.setOpen(true)}}
           />
         ))}
       </SpeedDial>
