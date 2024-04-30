@@ -18,6 +18,7 @@ const ActivityForm = (props) => {
             label="Description"
             variant="outlined"
           ></TextField>
+          <Button variant="contained">Submit</Button>
         </Box>
       </>
     );
