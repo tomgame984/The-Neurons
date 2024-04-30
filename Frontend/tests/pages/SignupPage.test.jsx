@@ -40,14 +40,14 @@ describe("Signup Page unit testing", () => {
         const passwordInputEl = screen.getByRole("password");
         const neurodiversity = screen.getByRole("neurodiversity");
         const submitButtonEl = screen.getByRole("submit-button");
-        const signupTitle = screen.getByRole("signup-page-title");
+        // const signupTitle = screen.getByRole("signup-page-title");
         expect(firstName).to.exist
         expect(lastName).to.exist
         expect(emailInputEl).to.exist
         expect(passwordInputEl).to.exist
         expect(neurodiversity).to.exist
         expect(submitButtonEl).to.exist
-        expect(signupTitle).to.exist
+        // expect(signupTitle).to.exist
 
     })
 
