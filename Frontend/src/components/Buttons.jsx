@@ -1,24 +1,9 @@
 import React, { useState } from "react";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import HorizontalRoleIcon from "@mui/icons-material/HorizontalRule";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import Box from "@mui/material/Box";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
-import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import HorizontalRoleIcon from '@mui/icons-material/HorizontalRule';
 
-const actions = [
-  { icon: <FileCopyIcon />, name: "Copy" },
-  { icon: <SaveIcon />, name: "Save" },
-  { icon: <PrintIcon />, name: "Print" },
-  { icon: <ShareIcon />, name: "Share" },
-];
 
 const Buttons = (props) => {
   const incrementCounter = () => {
