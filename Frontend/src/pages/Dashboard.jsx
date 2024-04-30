@@ -11,8 +11,9 @@ export const Dashboard = () => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
+
 
   return (
     <Container
@@ -29,8 +30,19 @@ export const Dashboard = () => {
       <div>
         <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
         <Gauge setCount={setCount} count={count} />
-        <Buttons setCount={setCount} count={count} open={open} handleOpen={handleOpen} id="buttons"/>
-        <ActivityForm open={open} handleOpen={handleOpen}></ActivityForm>
+        <Buttons
+          setCount={setCount}
+          count={count}
+          open={open}
+          handleOpen={handleOpen}
+          id="buttons"
+        />
+        <ActivityForm
+          open={open}
+          handleOpen={handleOpen}
+          count={count}
+          setCount={setCount}
+        ></ActivityForm>
         <ResetButton setCount={setCount} />
       </div>
     </Container>

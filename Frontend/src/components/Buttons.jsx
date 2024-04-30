@@ -81,7 +81,6 @@ const Buttons = (props) => {
             icon={action.icon}
             tooltipTitle={action.name}
             onClick={() => {
-              incrementCounter();
               props.handleOpen();
             }}
             data-testid="speed-dial-action-Increase Speed"
@@ -119,7 +118,6 @@ const Buttons = (props) => {
             icon={action.icon}
             tooltipTitle={action.name}
             onClick={() => {
-              decrementCounter();
               props.handleOpen();
             }}
             data-testid="speed-dial-action-Decrease Speed"
