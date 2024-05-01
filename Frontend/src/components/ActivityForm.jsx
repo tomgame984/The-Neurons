@@ -30,7 +30,7 @@ const ActivityForm = (props) => {
       <>
         <Box sx={{ bgcolor: "#ddd", borderRadius: "30px", padding: "10px" }}>
           <h2 style={{ marginTop: "-5px" }}>Log Activity</h2>
-          <IconButton onClick={() => props.handleOpen()}>
+          <IconButton data-testid="close-button" onClick={() => props.handleOpen()}>
             <CloseIcon />
           </IconButton>
           <TextField
@@ -50,6 +50,7 @@ const ActivityForm = (props) => {
               incrementCounter(increment);
               props.handleOpen();
             }}
+            data-testid="submit-button"
           >
             Submit
           </Button>

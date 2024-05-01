@@ -53,6 +53,7 @@ const Buttons = (props) => {
   return (
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
+        data-testid="speed-dial"
         onClick={() => handleOpenButton(1)}
         open={openButton1}
         ariaLabel="Power Up"
@@ -120,7 +121,7 @@ const Buttons = (props) => {
             onClick={() => {
               props.handleOpen();
             }}
-            data-testid="speed-dial-action-Decrease Speed"
+            data-testid="speed-dial-action-Decrease Speed-1"
           />
         ))}
       </SpeedDial>
