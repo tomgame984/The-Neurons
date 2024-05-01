@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Run vitest with coverage
-        run: npx vitest --coverage.enabled true
+        run: npx vitest --coverage
 
       - name: Upload coverage report
         if: always() 
