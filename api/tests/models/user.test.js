@@ -39,7 +39,7 @@ describe("User model", () => {
     expect(user.surname).toEqual("Del Rey");
   });
 
-  it("has a bio", () => {
+  it("has a neurodiversity", () => {
     const user = new User({
       name: "Lana",
       surname: "Del Rey",
