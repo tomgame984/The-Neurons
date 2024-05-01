@@ -40,10 +40,13 @@ const ActivityForm = (props) => {
             variant="outlined"
           ></TextField>
           <TextField
+            data-testid="scoreField"
             id="outlined-basic"
             label="Score"
             variant="outlined"
-            onChange={handleNumber}
+            onChange={(event) => {
+                handleNumber(parseInt(event.target.value));
+            }}
           ></TextField>
           <Button
             variant="contained"
@@ -51,8 +54,7 @@ const ActivityForm = (props) => {
               incrementCounter(increment);
               props.handleOpen();
             }}
-          >
-            Submit
+          >Submit
           </Button>
         </Box>
       </>
