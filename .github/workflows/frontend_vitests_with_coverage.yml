@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run vitest with coverage
-        working-directory: Frontend
+        working-directory: ./Frontend
         run: npx vitest --coverage.enabled true
 
 
