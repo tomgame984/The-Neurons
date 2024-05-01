@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Gauge from "../components/Gauge"; // Add missing import statement for Gague component
 import Buttons from "../components/Buttons";
 import ResetButton from "../components/ResetButton";
@@ -13,7 +13,17 @@ export const Dashboard = () => {
   const handleOpen = () => {
     setOpen(!open);
   };
+  
+  const [events, setEvent] = useState({});
 
+  useEffect(() => {
+    getUserEvents();
+}, []);
+
+  const getUserEvents = () => {
+    const events = JSON.parse(localStorage.getItem("events"))
+    setEvent(events)
+  }
 
   return (
     <Container
@@ -45,6 +55,15 @@ export const Dashboard = () => {
         ></ActivityForm>
         <ResetButton setCount={setCount} />
       </div>
+    <div>
+      {Object.keys(events).map((eventId) => (
+          <div key={eventId} style={{ border: "1px solid black", padding: "10px", marginBottom: "10px" }}>
+          <p role="event-category">Category: {events[eventId].category}</p>
+          <p role="event-description">Description: {events[eventId].description}</p>
+          <p role="event-score">Event Score: {events[eventId].eventScore}</p>
+        </div>
+      ))}
     </Container>
   );
-};
+}
+

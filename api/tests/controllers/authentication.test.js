@@ -8,11 +8,11 @@ const bcrypt = require('bcrypt');
 describe("/tokens", () => {
   beforeAll(async () => {
     const user = new User({
-      firstName : "auth-test-name",
-      lastName : "test-lastname",
-      bio : "test-bio",
+      name: "auth-test-name",
+      surname : "test-lastname",
       email: "auth-test@test.com",
       password: "Abcde1234!",
+      neurodiversity : "Autism",
     });
 
     await user.save();

@@ -1,25 +1,29 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 
-// import { useNavigate } from "react-router-dom";
-// import { login } from "../../src/services/authentication";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../src/services/authentication";
 
 import { LoginPage } from "../../src/pages/Login/loginPage";
 
 // Mocking React Router's useNavigate function
-// vi.mock("react-router-dom", () => {
-// const navigateMock = vi.fn();
-// const useNavigateMock = () => navigateMock; // Create a mock function for useNavigate
-// return { useNavigate: useNavigateMock };
-// });
+vi.mock("react-router-dom", () => {
+    const navigateMock = vi.fn();
+    const useNavigateMock = () => navigateMock; // Create a mock function for useNavigate
+    return { useNavigate: useNavigateMock };
+});
 
-// // Mocking the login service
-// vi.mock("../../src/services/authentication", () => {
-// const loginMock = vi.fn();
-// return { login: loginMock };
-// });
+// Mocking the login service
+vi.mock("../../src/services/authentication", () => {
+    const loginMock = vi.fn();
+    return { login: loginMock };
+});
+
+beforeEach(() => {
+vi.resetAllMocks();
+});
 
 // Reusable function for filling out login form
 const completeLoginForm = async () => {
@@ -60,46 +64,52 @@ describe("Login Page unit testing", () => {
 
     })
 
-// beforeEach(() => {
-// vi.resetAllMocks();
-// });
 
-// test("allows a user to login", async () => {
-// render(<LoginPage />);
+test("allows a user to login", async () => {
+render(<LoginPage />);
 
-// await completeLoginForm();
+await completeLoginForm();
 
-// expect(login).toHaveBeenCalledWith("test@email.com", "1234");
-// });
+expect(login).toHaveBeenCalledWith("test@email.com", "1234");
+});
 
-// test("navigates to /posts on successful login", async () => {
-// render(<LoginPage />);
+test("navigates to /Dashboard on successful login", async () => {
+render(<LoginPage />);
 
-// login.mockResolvedValue("secrettoken123");
-// const navigateMock = useNavigate();
+login.mockResolvedValue("secrettoken123");
+const navigateMock = useNavigate();
 
-// await completeLoginForm();
+await completeLoginForm();
 
-// expect(navigateMock).toHaveBeenCalledWith("/posts");
-// });
+expect(navigateMock).toHaveBeenCalledWith("/Dashboard");
+});
 
-// test("navigates to /login on unsuccessful login", async () => {
-// render(<LoginPage />);
+test("navigates to /login on unsuccessful login", async () => {
+render(<LoginPage />);
 
-// login.mockRejectedValue(new Error("Error logging in"));
-// const navigateMock = useNavigate();
+login.mockRejectedValue(new Error("Error logging in"));
+const navigateMock = useNavigate();
 
-// await completeLoginForm();
+await completeLoginForm();
 
-// expect(navigateMock).toHaveBeenCalledWith("/login");
-// });
+expect(navigateMock).toHaveBeenCalledWith("/");
+});
 
-// test("shows error message on an unsucessful login", async () => {
-// render(<LoginPage />);
-// login.mockRejectedValue(new Error("Error loggin in"));
-// await completeLoginForm();
+test("shows error message on an unsucessful login`", async () => {
+    render(<LoginPage />);
+    const user = userEvent.setup();
+    const email = screen.getByRole("email")
+    
+    const submitButtonEl = screen.getByRole("submit-button");
 
+    await user.type(email, "userfirstName")
 
-// expect(screen.getByText("Invalid email or password. Please try again.")).toBeInTheDocument();
-// })
+    await act(async () => {
+        await user.click(submitButtonEl);
+    });
+
+    await (() => {
+        expect(screen.getByRole("login-error-msg")).toBeInTheDocument();
+    });
+});
 });

@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+
 const UserSchema = new mongoose.Schema({
-  email: {type: String},
-  password: { type: String},
-  firstName: { type: String},
-  lastName: { type: String},
-  bio: { type: String},
-  image: { type: String},
-});
+  name: { type: String },
+  surname: { type: String },
+  email: { type: String },
+  password: { type: String },
+  neurodiversity: { type: String },
+  score: { type: Number, default: 0 },
+  event_history: { type: Object, default: {} }
+},
+{minimize: false}
+);
 
 UserSchema.pre('save', async function(next) {
   const pattern = /^(?=.*[A-Z])(?=.*[!@$%&])(?=.*[a-z]).{8,}$/ // has to have one of these symbols, !@$%& and at least 8 charachters and a capital letter
@@ -24,16 +28,16 @@ UserSchema.pre('save', async function(next) {
       if (!pattern.test(this.password)) {
         throw new Error('Password has to have one of these symbols: !@$%&, at least 8 characters and a capital letter.');
       }
-      if (!this.firstName) {
+      if (!this.name) {
         throw new Error ('Please enter a first name.')
       }
-      if (!this.lastName) {
+      if (!this.surname) {
         throw new Error ('Please enter a last name.')
       }
-      if (!this.bio) {
-        throw new Error ('Please enter a bio.')
+      if (!this.neurodiversity) {
+        throw new Error ('Please enter a neurodiversity.')
       }
-      const secret = "Awe5some$!";
+      const secret = process.env.SECRET;
       const hashedPassword = await bcrypt.hash(this.password + secret, 10);
       this.password = hashedPassword
   }

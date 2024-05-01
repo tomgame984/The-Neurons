@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { login } from "../../services/authentication";
+import { login } from "../../services/authentication";
 
 export const LoginPage = () => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [errorMessage, setErrorMessage] = useState("")
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 const handleSubmit = async (event) => {
 event.preventDefault();
 try {
-    const [token, userId] = await login(email, password);
+    const [token, userId, event_history] = await login(email, password);
+    console.log(userId)
     localStorage.setItem("token", token);
     localStorage.setItem("userId", userId)
+    localStorage.setItem("events", JSON.stringify(event_history));
+
     setEmail("")
     setPassword("")
     navigate("/Dashboard");
@@ -24,7 +27,7 @@ try {
     setPassword("")
     console.log(email)
     setErrorMessage("Invalid email or password. Please try again.")
-    navigate("/Homepage");
+    navigate("/");
 }
 };
 
@@ -59,9 +62,9 @@ return (
         value={password}
         onChange={handlePasswordChange}
     />
-    <input role="submit-button" id="submit" type="submit" value="Submit" />
+    <input role="submit-button" id="submit" type="submit" value="Log in" />
     </form>
-    <p style={{color: "red"}}>{errorMessage}</p>
+    <p role="login-error-msg" style={{color: "red"}}>{errorMessage}</p>
 </>
 );
 };

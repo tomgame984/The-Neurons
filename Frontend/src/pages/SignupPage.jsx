@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
-// import { signup } from "../../services/authentication";
+import { signup } from "../services/authentication";
 
 export const SignupPage = () => {
 const [name, setName] = useState("");
@@ -11,21 +9,21 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [errorMessage, setErrorMessage] = useState("");
 const [neurodiversity, setNeurodiversity] = useState("");
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 const handleSubmit = async (event) => {
 event.preventDefault();
 try {
-    // if (password !== repeatPassword) {
-    // setErrorMessage("Passwords do not match. Please try again.")
-    // return;
-    // }
     console.log("redirecting...:");
-    // await signup(name, surname, email, password);
-    // navigate("/Dashboard");
+    await signup(name, surname, email, password, neurodiversity);
+    navigate("/");
 } catch (err) {
+    console.log("i am here")
     console.error(err);
-    // navigate("/Dashboard");
+    console.log("line break")
+    console.error("error msg", err.message);
+    setErrorMessage(err.message)
+    navigate("/signup");
 }
 };
 
@@ -100,9 +98,14 @@ return (
         onChange={handleNeurodiversityChange}
     />
     
-    <input role="submit-button" id="submit" type="submit" value="Submit" />
+    <input role="submit-button" id="submit" type="submit" value="Join us" />
     </form>
-    <p style={{color: "red"}}>{errorMessage}</p>
+
+    {errorMessage && (
+    <div role="signup-error-msg" style={{ color: 'white', marginTop: '0.5rem' }}>
+    {errorMessage}
+    </div>
+)}
 </>
 );
 };

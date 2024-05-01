@@ -8,6 +8,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 describe('Unit testing for Gauge', () => {
     test('When Dashboard is loaded, counter is rendered as 0', () => {
         render(<Gauge />)
+
         const counterDisplay = screen.getByTestId('counter')
         expect(counterDisplay.textContent).toBe("0")
     }
