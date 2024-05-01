@@ -34,6 +34,7 @@ jobs:
           path: coverage
 
   report-coverage:
+    if: always() 
     needs: test
     runs-on: ubuntu-latest
     steps:
