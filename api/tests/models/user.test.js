@@ -19,70 +19,58 @@ describe("User model", () => {
 
   it("has an firstName", () => {
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
       password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
-    expect(user.firstName).toEqual("Lana");
+    expect(user.name).toEqual("Lana");
   });
 
   it("has an lastName", () => {
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
       password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
-    expect(user.lastName).toEqual("Del Rey");
+    expect(user.surname).toEqual("Del Rey");
   });
 
-  it("has a bio", () => {
+  it("has a neurodiversity", () => {
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
       password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
-    expect(user.bio).toEqual("I am a singer.");
+    expect(user.neurodiversity).toEqual("Autism");
   });
   
   it("has an email address", () => {
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
       password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
     expect(user.email).toEqual("someone@example.com");
   });
 
   it("has a password", () => {
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
       password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
     
     expect(user.password).toEqual("Abcde1234!");
-  });
-
-  it("has a pic", () => {
-    const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
-      email: "someone@example.com",
-      password: "testpic!",
-    });
-    
-    expect(user.password).toEqual("testpic!");
   });
 
   it("can list all users", async () => {
@@ -93,37 +81,36 @@ describe("User model", () => {
   it("can save a user", async () => {
     const plaintextPassword = "Abcde1234!"
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
       email: "someone@example.com",
-      password: plaintextPassword,
+      password: "Abcde1234!",
+      neurodiversity: "Autism"
     });
 
     await user.save();
     const users = await User.find();
 
-    expect(users[0].firstName).toEqual("Lana");
-    expect(users[0].lastName).toEqual("Del Rey");
-    expect(users[0].bio).toEqual("I am a singer.");
+    expect(users[0].name).toEqual("Lana");
+    expect(users[0].surname).toEqual("Del Rey");
+    expect(users[0].neurodiversity).toEqual("Autism");
     expect(users[0].email).toEqual("someone@example.com");
   });
+
   it("can save a user with a hashed password", async () => {
     const plaintextPassword = "Abcde1234!"
     const user = new User({
-      firstName: "Lana",
-      lastName: "Del Rey",
-      bio: "I am a singer.",
+      name: "Lana",
+      surname: "Del Rey",
+      neurodiversity: "Autism",
       email: "someone@example.com",
       password: plaintextPassword,
     });
 
     await user.save();
     const users = await User.find();
-    console.log (users[0].password)
-    const secret = "Awe5some$!";
+    const secret = process.env.SECRET;
     const isPasswordValid = await bcrypt.compare(plaintextPassword + secret, users[0].password);
-    console.log(isPasswordValid)
     expect(isPasswordValid).toBe(true);
   });
 });

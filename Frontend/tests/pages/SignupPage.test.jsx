@@ -1,17 +1,26 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, vi } from "vitest";
-
-// import { useNavigate } from "react-router-dom";
-// import { signup } from "../../src/services/authentication";
-
+import { useNavigate } from "react-router-dom";
+import { signup } from "../../src/services/authentication";
 import { SignupPage } from "../../src/pages/SignupPage";
+
+// Mocking React Router's useNavigate function
+vi.mock("react-router-dom", () => {
+    const navigateMock = vi.fn();
+    const useNavigateMock = () => navigateMock; // Create a mock function for useNavigate
+    return { useNavigate: useNavigateMock };
+    });
 
 // Mocking the signup service
 vi.mock("../../src/services/authentication", () => {
 const signupMock = vi.fn();
 return { signup: signupMock };
 });
+
+beforeEach(() => {
+    vi.resetAllMocks();
+    });
 
 // Reusable function for filling out signup form
 const completeSignupForm = async () => {
@@ -40,14 +49,12 @@ describe("Signup Page unit testing", () => {
         const passwordInputEl = screen.getByRole("password");
         const neurodiversity = screen.getByRole("neurodiversity");
         const submitButtonEl = screen.getByRole("submit-button");
-        // const signupTitle = screen.getByRole("signup-page-title");
         expect(firstName).to.exist
         expect(lastName).to.exist
         expect(emailInputEl).to.exist
         expect(passwordInputEl).to.exist
         expect(neurodiversity).to.exist
         expect(submitButtonEl).to.exist
-        // expect(signupTitle).to.exist
 
     })
 
@@ -73,37 +80,151 @@ describe("Signup Page unit testing", () => {
         expect(neurodiversity.value).toBe("None")
 
     })
-// beforeEach(() => {
-// vi.resetAllMocks();
-// });
 
-// test("allows a user to signup", async () => {
-// render(<SignupPage />);
+    test("allows a user to signup", async () => {
+    render(<SignupPage />);
+    await completeSignupForm();
+    expect(signup).toHaveBeenCalledWith("userfirstName", "userlastName", "test@email.com", "1234", "None");
+    });
 
-// await completeSignupForm();
+    test("navigates to /homepage on successful signup", async () => {
+    render(<SignupPage />);
 
-// expect(submitButtonEl).toHaveBeenCalled();
-// expect(signup).toHaveBeenCalledWith("userfirstName", "userlastName", "test@email.com", "1234", "None");
-});
+    const navigateMock = useNavigate();
 
-// test("navigates to /login on successful signup", async () => {
-// render(<SignupPage />);
+    await completeSignupForm();
 
-// const navigateMock = useNavigate();
+    expect(navigateMock).toHaveBeenCalledWith("/");
+    });
 
-// await completeSignupForm();
+    test("navigates to /signup on unsuccessful signup", async () => {
+    render(<SignupPage />);
 
-// expect(navigateMock).toHaveBeenCalledWith("/login");
-// });
+    signup.mockRejectedValue(new Error("Error signing up"));
+    const navigateMock = useNavigate();
 
-// test("navigates to /signup on unsuccessful signup", async () => {
-// render(<SignupPage />);
+    await completeSignupForm();
 
-// signup.mockRejectedValue(new Error("Error signing up"));
-// const navigateMock = useNavigate();
+    expect(navigateMock).toHaveBeenCalledWith("/signup");
+    });
 
-// await completeSignupForm();
+    test("throw an error on unsuccessful signup for missing password`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const lastName = screen.getByRole("surname")
+        const emailInputEl = screen.getByRole("email");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        
+        const submitButtonEl = screen.getByRole("submit-button");
 
-// expect(navigateMock).toHaveBeenCalledWith("/signup");
-// });
+        await user.type(firstName, "userfirstName")
+        await user.type(lastName, "userlastName")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(neurodiversity, "None");
 
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+    });
+
+    test("throw an error on unsuccessful signup for missing name`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const lastName = screen.getByRole("surname")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(lastName, "userlastName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+
+        
+    });
+
+    test("throw an error on unsuccessful signup for missing last name`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+    })
+    test("throw an error on unsuccessful signup for missing email`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const lastName = screen.getByRole("surname")
+        const passwordInputEl = screen.getByRole("password");
+        const neurodiversity = screen.getByRole("neurodiversity");
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(lastName, "userlastName")
+        await user.type(passwordInputEl, "ABCD1234$")
+        await user.type(neurodiversity, "None");
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+    })
+    test("throw an error on unsuccessful signup for missing neurodiversity`", async () => {
+        render(<SignupPage />);
+        const user = userEvent.setup();
+        const firstName = screen.getByRole("name")
+        const lastName = screen.getByRole("surname")
+        const emailInputEl = screen.getByRole("email");
+        const passwordInputEl = screen.getByRole("password");
+        const submitButtonEl = screen.getByRole("submit-button");
+
+        await user.type(firstName, "userfirstName")
+        await user.type(lastName, "userlastName")
+        await user.type(emailInputEl, "test@email.com");
+        await user.type(passwordInputEl, "ABCD1234$")
+
+        await act(async () => {
+            await user.click(submitButtonEl);
+        });
+    
+        await (() => {
+            expect(screen.getByRole("signup-error-msg")).toBeInTheDocument();
+        });
+
+        
+    })
+})

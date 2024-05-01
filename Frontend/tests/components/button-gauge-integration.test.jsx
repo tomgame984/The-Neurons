@@ -1,19 +1,19 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Buttons from "../../src/components/Buttons";
-import Gauge from "../../src/components/Gauge";
+import Gague from "../../src/components/Gague";
 import userEvent from "@testing-library/user-event";
 
 describe("Gauge and buttons integration test suite", () => {
     test("Test that gague renders with buttons component", () => {
-    render(<Gauge />);
+    render(<Gague />);
     const buttons = screen.getByRole("power-buttons")
     expect(buttons).to.exist;
 });
 
 
 test("Test that When User doesn't click any buttons Counter number stays 0", async () =>  {
-        render(<Gauge />)
+        render(<Gague />)
         const counterDisplay = screen.getByTestId('counter')
         expect(counterDisplay.textContent).toBe("0")
     
@@ -21,7 +21,7 @@ test("Test that When User doesn't click any buttons Counter number stays 0", asy
 
 test("Test that When User clicks Power Up Button Counter number changes to 2", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerUpButton = screen.getByTestId("button-test-up");
     const counter = screen.getByTestId("counter")
     
@@ -34,7 +34,7 @@ test("Test that When User clicks Power Up Button Counter number changes to 2", a
 });
 test("Test that When User clicks Power Down Button Counter number changes to -2", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerDownButton = screen.getByTestId("button-test-down");
     const counter = screen.getByTestId("counter")
     
@@ -46,7 +46,7 @@ test("Test that When User clicks Power Down Button Counter number changes to -2"
 });
 test("Test that When User clicks Power Down Button Twice and Power Up Button once Counter number changes to -1", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerDownButton = screen.getByTestId("button-test-down");
     const powerUpButton = screen.getByTestId("button-test-up");
     const counter = screen.getByTestId("counter")
@@ -61,7 +61,7 @@ test("Test that When User clicks Power Down Button Twice and Power Up Button onc
 
 test("Test that When User clicks  Power Up Button once and Power Down Button Twice, number changes to -1", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerDownButton = screen.getByTestId("button-test-down");
     const powerUpButton = screen.getByTestId("button-test-up");
     const counter = screen.getByTestId("counter")
@@ -76,7 +76,7 @@ test("Test that When User clicks  Power Up Button once and Power Down Button Twi
 });
 test("Test that When User clicks Power Up Button Twice and Power Down Button once Counter number changes to 1", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerDownButton = screen.getByTestId("button-test-down");
     const powerUpButton = screen.getByTestId("button-test-up");
     const counter = screen.getByTestId("counter")
@@ -91,7 +91,7 @@ test("Test that When User clicks Power Up Button Twice and Power Down Button onc
 
     test("Test that When User clicks Power Down Button once and Power Up Button Twice , Counter number changes to 1", async () =>  {
     const user = userEvent.setup()
-    render(<Gauge />);
+    render(<Gague />);
     const powerDownButton = screen.getByTestId("button-test-down");
     const powerUpButton = screen.getByTestId("button-test-up");
     const counter = screen.getByTestId("counter")
@@ -106,13 +106,13 @@ test("Test that When User clicks Power Up Button Twice and Power Down Button onc
 });
 
 test('When Dashboard is loaded, the reset button is rendered', () => {
-    render(<Gauge />)
+    render(<Gague />)
     const counterReset = screen.getByRole('reset-button')
     expect(counterReset).to.exist
 }
 )
 test('When reset button is clicked, counter is reset to 0', () => {
-    render(<Gauge />)
+    render(<Gague />)
     const counterDisplay = screen.getByTestId('counter')
     const counterReset = screen.getByRole('reset-button')
     fireEvent.click(counterReset)
