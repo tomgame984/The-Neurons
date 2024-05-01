@@ -31,7 +31,7 @@ jobs:
 
       - name: Run vitest with coverage
         run: |
-          cd Frontend   # Change to the Frontend directory
+          cd Frontend
           npx vitest --coverage
 
       - name: Upload coverage report
