@@ -30,7 +30,9 @@ jobs:
         run: npm install
 
       - name: Run vitest with coverage
-        run: npx vitest --coverage
+        run: |
+          cd Frontend   # Change to the Frontend directory
+          npx vitest --coverage
 
       - name: Upload coverage report
         if: always() 
