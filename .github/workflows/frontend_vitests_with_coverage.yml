@@ -26,6 +26,7 @@ jobs:
 
       - name: Run vitest with coverage
         run: npm run coverage
+        working-directory: Frontend
 
       - name: Upload coverage report
         if: always() 
