@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Gauge from "../components/Gauge"; // Add missing import statement for Gague component
 import Buttons from "../components/Buttons";
 import ResetButton from "../components/ResetButton";
-import { Box, Container } from "@mui/material";
+import { Button } from "@mui/material";
 import { green } from "@mui/material/colors";
 import ActivityForm from "../components/ActivityForm";
+import { Box, Container } from "@mui/material";
 
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
@@ -46,12 +47,7 @@ export const Dashboard = () => {
         padding: "20px", 
         }}
       >
-      <button onClick={handleLogout}
-      style={{
-        marginBottom: "20px", 
-        alignSelf: "flex-end", 
-      }}
-      >Logout</button>
+     
         <div>
           <h1 style={{ textAlign: "center", marginBottom: "20px"}}>Energy Counter</h1>
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -75,6 +71,15 @@ export const Dashboard = () => {
         </div>
         </div>
       </Box>
+      <Button onClick={handleLogout}
+      variant="contained"
+      sx={{
+        marginBottom: "20px",
+        position:  "absolute",
+        right: "10px",
+        top: "10px",
+      }}
+      >Logout</Button>
       <div>
         {Object.keys(events).map((eventId) => (
           <div
