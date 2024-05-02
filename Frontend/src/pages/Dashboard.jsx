@@ -21,27 +21,42 @@ export const Dashboard = () => {
   }, []);
 
   const getUserEvents = () => {
-    const events = JSON.parse(localStorage.getItem("events"));
-    setEvent(events);
+    const events = JSON.parse(localStorage.getItem("events"))
+    setEvent(events)
+  }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
   };
 
   return (
+    
     <>
       <Box
+    
         sx={{
           borderRadius: "80px",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          flexDirection: "column", 
+          alignItems: "center", 
           backgroundColor: "#eee",
           boxShadow: "0px 0px 58px -29px rgba(0,0,0,0.75)",
           margin: "20px",
           minWidth: "690px",
+        padding: "20px", 
         }}
       >
+      <button onClick={handleLogout}
+      style={{
+        marginBottom: "20px", 
+        alignSelf: "flex-end", 
+      }}
+      >Logout</button>
         <div>
-          <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
+          <h1 style={{ textAlign: "center", marginBottom: "20px"}}>Energy Counter</h1>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <Gauge setCount={setCount} count={count} />
+        </div>
           <Buttons
             setCount={setCount}
             count={count}
@@ -55,7 +70,9 @@ export const Dashboard = () => {
             count={count}
             setCount={setCount}
           />
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <ResetButton setCount={setCount} />
+        </div>
         </div>
       </Box>
       <div>

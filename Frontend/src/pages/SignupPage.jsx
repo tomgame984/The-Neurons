@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../services/authentication";
+import { Fireworks } from '@fireworks-js/react'
 
 export const SignupPage = () => {
 const [name, setName] = useState("");
@@ -16,6 +17,7 @@ event.preventDefault();
 try {
     console.log("redirecting...:");
     await signup(name, surname, email, password, neurodiversity);
+
     navigate("/");
 } catch (err) {
     console.log("i am here")
@@ -47,7 +49,16 @@ const handleNeurodiversityChange = (event) => {
 setNeurodiversity(event.target.value);
 };
 
+// const ref = useRef(null);
 
+// const toggle = () => {
+// if (!ref.current) return;
+// if (ref.current.isRunning) {
+//     ref.current.stop();
+// } else {
+//     ref.current.start();
+// }
+// };
 return (
 <>
     <h2>Signup</h2>
@@ -100,12 +111,29 @@ return (
     
     <input role="submit-button" id="submit" type="submit" value="Join us" />
     </form>
-
     {errorMessage && (
-    <div role="signup-error-msg" style={{ color: 'white', marginTop: '0.5rem' }}>
+        <div role="signup-error-msg" style={{ color: 'red', font: 'bold', marginTop: '0.5rem' }}>
+
     {errorMessage}
     </div>
 )}
+<div
+    style={{
+        top: '30%', 
+        left: 0,
+        width: '100%',
+        height: '100%', 
+        position: 'fixed',
+        background: 'transparent',
+        zIndex: 0, 
+    }}
+>
+    <Fireworks
+        // ref={ref}
+        options={{ opacity: 0.5 }}
+    />
+</div>
+
 </>
 );
 };
