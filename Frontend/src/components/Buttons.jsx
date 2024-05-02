@@ -12,12 +12,14 @@ import ShareIcon from "@mui/icons-material/Share";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import Box from "@mui/material/Box";
+
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
   { icon: <SaveIcon />, name: "Save" },
   { icon: <PrintIcon />, name: "Print" },
   { icon: <ShareIcon />, name: "Share" },
 ];
+
 const Buttons = (props) => {
   const [openButton1, setOpenButton1] = useState(false);
   const [openButton2, setOpenButton2] = useState(false);
