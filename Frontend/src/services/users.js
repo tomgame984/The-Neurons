@@ -19,20 +19,20 @@ return data;
 
 };
 
-export const putUserEvent = async (token, userId, event) => {
+export const putUserEvent = async (token, userid, event) => {
 
 const payload = {
     category: event.category,
     description: event.description,
     score: event.eventScore
     };
-
+console.log(token, userid, payload )
 const requestOptions = {
     method: "PUT",
     headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
-    userId: userId
+    userid: userid
 },
 body: JSON.stringify(payload),
 };
@@ -40,7 +40,7 @@ body: JSON.stringify(payload),
 const response = await fetch(`${BACKEND_URL}/users`, requestOptions);
 
 if (response.status !== 200) {
-throw new Error("Unable to fetch user");
+throw new Error("Unable to add user event");
 }
 
 const data = await response.json();
