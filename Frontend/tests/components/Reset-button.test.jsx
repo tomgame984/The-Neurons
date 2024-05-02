@@ -5,8 +5,6 @@ import { Dashboard } from "../../src/pages/Dashboard";
 import ResetButton from "../../src/components/ResetButton";
 import ActivityForm from "../../src/components/ActivityForm";
 
-test.skip('This is a test that is currently failing', () => {
-    // Test implementation
 
 describe('Unit testing for ResetButton', () => {
     test('When Dashboard is loaded, reset button exists', () => {
@@ -48,5 +46,4 @@ describe('Unit testing for ResetButton', () => {
         fireEvent.click(reset)
         expect(counterDisplay.textContent).toEqual("0")
     })
-});
 });

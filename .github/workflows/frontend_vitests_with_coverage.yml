@@ -12,11 +12,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      pull-requests: write
-
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,14 +25,14 @@ jobs:
         run: npm install
 
       - name: Run vitest with coverage
-        run: npx vitest --coverage
+        run: npx vitest --coverage.enabled true
 
       - name: Upload coverage report
         if: always() 
         uses:  davelosert/vitest-coverage-report-action@v2
         with:
             name: 'Frontend'
-            json-summary-path: Frontend/coverage/coverage-summary.json
-            json-final-path: Frontend/coverage-final.json
-
+            json-summary-path: './coverage/coverage-summary.json'
+            json-final-path: './coverage/coverage-final.json'
+            working-directory: ./Frontend
 
