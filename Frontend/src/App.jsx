@@ -3,6 +3,7 @@ import './App.css'
 import { Dashboard } from './pages/Dashboard'
 import { HomePage } from "./pages/Landing/Homepage";
 import { SignupPage } from "./pages/SignupPage"
+import { Container } from "@mui/material";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +23,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-
+      <Container>
       <RouterProvider router={router} />
-
+      </Container>
     </>
   );
 };
