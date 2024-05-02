@@ -45,12 +45,12 @@ body: JSON.stringify(payload),
 };
 
 let response = await fetch(`${BACKEND_URL}/users`, requestOptions);
-
+const data = await response.json()
 if (response.status === 201) {
 return;
 } else {
 throw new Error(
-    `Received status ${response.status} when signing up. Expected 201`
+    `Please correct error: ${data.message}`
 );
 }
 };
