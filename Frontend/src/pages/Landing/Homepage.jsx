@@ -6,16 +6,16 @@ export const HomePage = () => {
     const handleNavigation = () => {
         navigate("/signup");
     }
-    return(
+    return (
         <>
-        
             <LoginPage />
-        
-        <div role="signup-navigation-link">
-            <button role="navigation-to-signup" onClick={handleNavigation}>Join The Neurons</button>
-        </div>
+            <div style={{ position: "relative", marginTop: "-50px", textAlign: "center" }}>
+                <button onClick={handleNavigation} style={{ padding: "10px", backgroundColor: "teal", color: "#fff", border: "none", cursor: "pointer" }}>
+                    Join The Neurons
+                </button>
+            </div>
         </>
-    )
+    );
 
 
 

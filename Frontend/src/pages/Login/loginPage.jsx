@@ -44,10 +44,10 @@ return (
 <h2 style={{ marginBottom: "2px", textAlign: "center", marginTop: "30px"}} role="login-heading">
     Login
   </h2>
-<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", top }}>
+<div style={{ display: "flex", justifyContent: "center", alignItems: "center", top }}>
 
     
-    <form onSubmit={handleSubmit} role= "login-form" style={{ display: "flex", flexDirection: "column", marginBottom: "35%" }}>
+    <form onSubmit={handleSubmit} role= "login-form" style={{ display: "flex", flexDirection: "column", marginBottom: "2%" }}>
     <label htmlFor="email" style={{ marginBottom: "10px" }}>Email:</label>
     <input
         id="email"
