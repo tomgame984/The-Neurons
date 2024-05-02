@@ -29,7 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run vitest with coverage
-        run: npx vitest
+      - name: Run vitest 
+        run: |
+          cd Frontend && npx vitest
 
 
