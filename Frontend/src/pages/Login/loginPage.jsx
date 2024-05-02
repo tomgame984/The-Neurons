@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { login } from "../../services/authentication";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 export const LoginPage = () => {
@@ -43,9 +43,9 @@ export const LoginPage = () => {
 
   return (
     <>
-          <p role="login-error-msg" style={{ color: "red" }}>
-            {errorMessage}
-          </p>
+      <p role="login-error-msg" style={{ color: "red" }}>
+        {errorMessage}
+      </p>
       <Box
         sx={{
           display: "flex",
@@ -57,7 +57,7 @@ export const LoginPage = () => {
           borderRadius: "10px",
           minWidth: "320px",
           minHeight: "300px",
-          boxShadow: "0px 0px 9px -3px rgba(143,143,143,1)"
+          boxShadow: "0px 0px 9px -3px rgba(143,143,143,1)",
         }}
       >
         <h2 role="login-heading">Login</h2>
@@ -99,8 +99,12 @@ export const LoginPage = () => {
             id="submit"
             type="submit"
             value="Log in"
-            sx={{ margin: "20px" }}
-          >Log In</Button>
+            sx={{
+              margin: "20px",
+            }}
+          >
+            Log In
+          </Button>
         </form>
       </Box>
     </>
