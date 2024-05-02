@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import HorizontalRoleIcon from "@mui/icons-material/HorizontalRule";
 import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
+import GroupsIcon from '@mui/icons-material/Groups';
+import WeekendIcon from '@mui/icons-material/Weekend';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import Box from "@mui/material/Box";
 
 const actions = [
-  { icon: <FileCopyIcon />, name: "Copy" },
-  { icon: <SaveIcon />, name: "Save" },
-  { icon: <PrintIcon />, name: "Print" },
-  { icon: <ShareIcon />, name: "Share" },
+  { icon: <GroupsIcon />, name: "Social" },
+  { icon: <WeekendIcon />, name: "Rest" },
+  { icon: <DirectionsRunIcon />, name: "Physical" },
+  { icon: <PsychologyIcon />, name: "Mental" },
 ];
+
+
 
 const Buttons = (props) => {
   const [openButton1, setOpenButton1] = useState(false);
@@ -49,6 +47,7 @@ const Buttons = (props) => {
       props.setCount(props.count - 1) 
     }
   };
+
 
   return (
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
@@ -82,6 +81,7 @@ const Buttons = (props) => {
             tooltipTitle={action.name}
             onClick={() => {
               props.handleOpen();
+              props.handleCategoryChange(action.name);
             }}
             data-testid="speed-dial-action-Increase Speed"
           />
