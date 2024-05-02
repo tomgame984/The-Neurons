@@ -84,7 +84,7 @@ const ActivityForm = (props) => {
             variant="contained"
             onClick={() => {
               handleActivitySubmitToDB()
-              // incrementCounter(increment);
+              incrementCounter(increment);
               props.handleOpen();
             }}
           >Submit
