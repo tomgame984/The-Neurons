@@ -1,4 +1,4 @@
-name: Frontend Vitest Framework
+name: Frontend Vitests with Coverage
 
 on:
     push:
@@ -29,9 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run vitest
-        run: |
-          cd Frontend
-          npx vitest
+      - name: Run vitest with coverage
+        run: npx vitest
 
 

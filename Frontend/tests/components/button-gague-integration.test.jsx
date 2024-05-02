@@ -4,10 +4,6 @@ import Buttons from "../../src/components/Buttons";
 import Gauge from "../../src/components/Gauge";
 import userEvent from "@testing-library/user-event";
 
-
-test.skip('This is a test that is currently failing', () => {
-    // Test implementation
-
 describe("Gauge and buttons integration test suite", () => {
     test("Test that gague renders with buttons component", () => {
     render(<Gauge />);
@@ -123,5 +119,4 @@ test('When reset button is clicked, counter is reset to 0', () => {
     expect(counterDisplay.textContent).toBe("0")
 }
 )
-});
 });
