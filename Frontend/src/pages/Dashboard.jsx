@@ -9,6 +9,7 @@ import ActivityForm from "../components/ActivityForm";
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState("")
 
   const handleOpen = () => {
     setOpen(!open);
@@ -28,6 +29,11 @@ export const Dashboard = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
+
+  const handleCategoryChange = (name) => {
+    setCategory(name);
+  };
+
 
   return (
     
@@ -60,6 +66,8 @@ export const Dashboard = () => {
           count={count}
           open={open}
           handleOpen={handleOpen}
+          handleCategoryChange={handleCategoryChange}
+          
           id="buttons"
         />
         <ActivityForm
@@ -67,6 +75,9 @@ export const Dashboard = () => {
           handleOpen={handleOpen}
           count={count}
           setCount={setCount}
+          category={category}
+          handleCategoryChange={handleCategoryChange}
+
         />
         <div style={{ display: "flex", justifyContent: "center" }}>
         <ResetButton setCount={setCount} />
@@ -75,7 +86,7 @@ export const Dashboard = () => {
       <div>
         {Object.keys(events).map((eventId) => (
           <div key={eventId} style={{ border: "1px solid black", padding: "10px", marginBottom: "10px" }}>
-            <p role="event-category">Category: {events[eventId].category}</p>
+            <p role="event-category">Category: {category}</p>
             <p role="event-description">Description: {events[eventId].description}</p>
           </div>
         ))}

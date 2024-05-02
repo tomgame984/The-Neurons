@@ -21,6 +21,7 @@ const actions = [
 const Buttons = (props) => {
   const [openButton1, setOpenButton1] = useState(false);
   const [openButton2, setOpenButton2] = useState(false);
+  // const [category, setCategory] = useState("")
 
   const handleOpenButton = (buttonNum) => {
     if (buttonNum === 1) {
@@ -47,6 +48,11 @@ const Buttons = (props) => {
       props.setCount(props.count - 1) 
     }
   };
+  
+  const setCategoryChange=(name) => {
+    props.handleCategoryChange(name)
+  }
+  
 
 
   return (
@@ -81,7 +87,7 @@ const Buttons = (props) => {
             tooltipTitle={action.name}
             onClick={() => {
               props.handleOpen();
-              props.handleCategoryChange(action.name);
+              setCategoryChange(action.name);
             }}
             data-testid="speed-dial-action-Increase Speed"
           />
@@ -119,6 +125,7 @@ const Buttons = (props) => {
             tooltipTitle={action.name}
             onClick={() => {
               props.handleOpen();
+              setCategoryChange(action.name);
             }}
             data-testid="speed-dial-action-Decrease Speed"
           />
