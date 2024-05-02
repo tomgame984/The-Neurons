@@ -41,10 +41,14 @@ setPassword(event.target.value);
 
 return (
 <>
-    <h2 role="login-heading">Login</h2>
+<h2 style={{ marginBottom: "2px", textAlign: "center", marginTop: "30px"}} role="login-heading">
+    Login
+  </h2>
+<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", top }}>
+
     
-    <form onSubmit={handleSubmit} role= "login-form">
-    <label htmlFor="email">Email:</label>
+    <form onSubmit={handleSubmit} role= "login-form" style={{ display: "flex", flexDirection: "column", marginBottom: "35%" }}>
+    <label htmlFor="email" style={{ marginBottom: "10px" }}>Email:</label>
     <input
         id="email"
         placeholder="Email"
@@ -52,8 +56,9 @@ return (
         role="email"
         value={email}
         onChange={handleEmailChange}
+        style={{ marginBottom: "10px", padding: "5px" }}
     />
-    <label htmlFor="password">Password:</label>
+    <label htmlFor="password" style={{ marginBottom: "10px" }}>Password:</label>
     <input
         id="password"
         placeholder="Password"
@@ -61,10 +66,13 @@ return (
         role="password"
         value={password}
         onChange={handlePasswordChange}
+        style={{ marginBottom: "10px", padding: "5px" }}
     />
-    <input role="submit-button" id="submit" type="submit" value="Log in" />
+    <input role="submit-button" id="submit" type="submit" value="Log in" style={{ padding: "10px", backgroundColor: "teal", color: "#fff", border: "none", cursor: "pointer" }}/>
+    <p role="login-error-msg" style={{color: "red", marginTop: "10px"}}>{errorMessage}</p>
     </form>
-    <p role="login-error-msg" style={{color: "red"}}>{errorMessage}</p>
+   
+    </div>
 </>
 );
 };
