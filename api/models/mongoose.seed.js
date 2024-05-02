@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = require("./user") // Assuming User model is defined in a separate file
-const Post = require('./post')
+
 
 const { connectToDatabase } = require("../db/db");
 const { sub } = require('date-fns');
