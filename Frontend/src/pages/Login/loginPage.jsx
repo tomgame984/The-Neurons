@@ -43,6 +43,7 @@ export const LoginPage = () => {
 
   return (
     <>
+      <img src="/src/assets/image.png" style={{height: "100px", margin: "auto"}}></img>
       <p role="login-error-msg" style={{ color: "red" }}>
         {errorMessage}
       </p>
@@ -53,7 +54,7 @@ export const LoginPage = () => {
           alignItems: "center",
           justifyContent: "center",
           bgcolor: "#f0f0f0",
-          margin: "10px",
+          margin: "15px",
           borderRadius: "10px",
           minWidth: "320px",
           minHeight: "300px",

@@ -33,6 +33,7 @@ export const Dashboard = () => {
   return (
     
     <>
+      <img src="/src/assets/image.png" style={{height: "80px", position: "absolute", left: "10px", top: "10px"}}></img>
       <Box
     
         sx={{
@@ -72,22 +73,29 @@ export const Dashboard = () => {
         </div>
       </Box>
       <Button onClick={handleLogout}
-      variant="contained"
+      variant="text"
       sx={{
         marginBottom: "20px",
         position:  "absolute",
         right: "10px",
         top: "10px",
+        color: "red"
       }}
       >Logout</Button>
       <div>
         {Object.keys(events).map((eventId) => (
-          <div
+          <Box
             key={eventId}
-            style={{
-              border: "1px solid black",
+            sx={{
               padding: "10px",
               marginBottom: "10px",
+              bgcolor: "#f0f0f0",
+              borderRadius: "10px",
+              maxWidth: "450px",
+              boxShadow: "0px 0px 9px -3px rgba(143,143,143,1)",
+              alignSelf: "center",
+              marginInline: "auto",
+              marginbottom: "10px",
             }}
           >
             <p role="event-category">Category: {events[eventId].category}</p>
@@ -95,7 +103,7 @@ export const Dashboard = () => {
               Description: {events[eventId].description}
             </p>
             <p role="event-score">Event Score: {events[eventId].eventScore}</p>
-          </div>
+          </Box>
         ))}
       </div>
     </>

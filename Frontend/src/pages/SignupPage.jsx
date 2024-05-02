@@ -64,6 +64,8 @@ export const SignupPage = () => {
   // };
   return (
     <>
+      <img src="/src/assets/image.png" style={{height: "100px", margin: "auto"}}></img>
+
       <Box
         sx={{
           display: "flex",

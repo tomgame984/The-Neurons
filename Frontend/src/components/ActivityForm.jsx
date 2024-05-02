@@ -79,6 +79,7 @@ const ActivityForm = (props) => {
             variant="outlined"
             value={description}
             onChange={handleDescriptionChange}
+            
           ></TextField>
           <TextField
             data-testid="scoreField"
