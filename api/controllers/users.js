@@ -30,6 +30,7 @@ const create = async (req, res) => {
 const updateUserEventHistory = async (req, res) => {
   try {
       const userId = req.headers["userid"]
+      console.log("USER ID", userId)
       const user = await User.findById(userId);
     console.log("USER FOUND", user)
       if (!user) {
