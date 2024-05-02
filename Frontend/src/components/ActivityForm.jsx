@@ -12,10 +12,18 @@ const ActivityForm = (props) => {
   const [description, setdescription] = useState("");
   const [score, setscore] = useState();
   
-  const handleNumber = (num) => {
-    setIncrement(Number(num))
-  };
+  // const handleNumber = (num, event) => {
+  //   setIncrement(Number(num))
+  // };
   
+  const handleScoreChange = (event) => {
+    const value = event.target.value;
+    if (/^-?\d*$/.test(value)) { 
+      setIncrement(parseInt(value)); 
+      setscore(value); 
+    }
+  };
+
   const incrementCounter = (num) => {
     if (props.count <= 9) {
       props.setCount(props.count + Number(num));
@@ -34,9 +42,11 @@ const ActivityForm = (props) => {
   const handleDescriptionChange = (event) => {
     setdescription(event.target.value);
   };
-  const handleScoreChange = (event) => {
-    setscore(event.target.value);
-  };
+
+  // const handleScoreChange = (event) => {
+  //   setscore(event.target.value);
+  // };
+
   const handleActivitySubmitToDB = async() => {
     const token = localStorage.getItem("token")
     const userid = localStorage.getItem("userId")
@@ -77,7 +87,7 @@ const ActivityForm = (props) => {
             variant="outlined"
             value={score}
             onChange={handleScoreChange}
-            // onChange={(event) => {handleNumber(parseInt(event.target.value))}}
+      
               
           ></TextField>
           <Button

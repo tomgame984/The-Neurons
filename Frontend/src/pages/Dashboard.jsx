@@ -24,9 +24,15 @@ export const Dashboard = () => {
     const events = JSON.parse(localStorage.getItem("events"))
     setEvent(events)
   }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
 
   return (
+    
     <Container
+    
       sx={{
         borderRadius: "80px",
         display: "flex",
@@ -37,6 +43,7 @@ export const Dashboard = () => {
         minWidth: "690px",
       }}
     >
+      <button onClick={handleLogout}>Logout</button>
       <div>
         <h1 style={{ textAlign: "center" }}>Energy Counter</h1>
         <Gauge setCount={setCount} count={count} />

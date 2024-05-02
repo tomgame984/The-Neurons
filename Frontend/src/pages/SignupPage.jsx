@@ -113,6 +113,7 @@ return (
     </form>
     {errorMessage && (
         <div role="signup-error-msg" style={{ color: 'red', font: 'bold', marginTop: '0.5rem' }}>
+
     {errorMessage}
     </div>
 )}
