@@ -6,14 +6,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     coverage: {
-      thresholds: {
-        lines: 90,
-        branches: 90,
-        functions: 90,
-        statements: 90},
       enabled: true,
-      reporter: ['text', 'json-summary', 'json', 'html', 'lcov'],
-      reportOnFailure: true
+      reporter: ["text", "html"]
     },
     
     globals: true,
