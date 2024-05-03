@@ -68,7 +68,7 @@ const ActivityForm = (props) => {
   if (props.open == true) {
     return (
       <>
-        <Box sx={{ bgcolor: "#ddd", borderRadius: "30px", padding: "10px" }}>
+        <Box sx={{borderRadius: "10px", padding: "10px", border: "2px solid #A1A1A1", marginBottom: "20px", bgcolor: "#ddd"}}>
           <h2 style={{ marginTop: "-5px" }}>Log Activity</h2>
           <IconButton onClick={() => props.handleOpen()}>
             <CloseIcon />
@@ -79,6 +79,7 @@ const ActivityForm = (props) => {
             variant="outlined"
             value={description}
             onChange={handleDescriptionChange}
+            sx={{ marginInline: "10px" }}
           ></TextField>
           <TextField
             data-testid="scoreField"
@@ -87,6 +88,8 @@ const ActivityForm = (props) => {
             variant="outlined"
             value={score}
             onChange={handleScoreChange}
+            sx={{ marginInline: "10px" }}
+
       
               
           ></TextField>
@@ -97,6 +100,7 @@ const ActivityForm = (props) => {
               incrementCounter(increment);
               props.handleOpen();
             }}
+            sx={{ display: "block", marginInline: "auto", marginTop: "10px", marginBottom: "10px"}}
           >Submit
           </Button>
         </Box>
