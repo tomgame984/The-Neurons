@@ -32,18 +32,6 @@ try {
     navigate("/signup");
 }
 };
-
-      navigate("/");
-    } catch (err) {
-      console.log("i am here");
-      console.error(err);
-      console.log("line break");
-      console.error("error msg", err.message);
-      setErrorMessage(err.message);
-      navigate("/signup");
-    }
-  };
-
   const handlefirstNameChange = (event) => {
     setName(event.target.value);
   };
