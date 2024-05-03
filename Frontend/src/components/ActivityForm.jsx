@@ -89,6 +89,7 @@ const ActivityForm = (props) => {
             value={score}
             onChange={handleScoreChange}
             sx={{ marginInline: "10px" }}
+
       
               
           ></TextField>

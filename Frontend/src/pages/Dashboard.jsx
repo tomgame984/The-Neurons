@@ -82,6 +82,7 @@ export const Dashboard = () => {
         color: "red"
       }}
       >Logout</Button>
+
       <div>
         {Object.keys(events).map((eventId) => (
           <Box
@@ -99,11 +100,8 @@ export const Dashboard = () => {
             }}
           >
             <p role="event-category">Category: {events[eventId].category}</p>
-            <p role="event-description">
-              Description: {events[eventId].description}
-            </p>
-            <p role="event-score">Event Score: {events[eventId].eventScore}</p>
-          </Box>
+            <p role="event-description">Description: {events[eventId].description}</p>
+          </div>
         ))}
       </div>
     </>

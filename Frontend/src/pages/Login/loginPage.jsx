@@ -62,7 +62,6 @@ export const LoginPage = () => {
         }}
       >
         <h2 role="login-heading">Login</h2>
-
         <form onSubmit={handleSubmit} role="login-form">
           <label
             htmlFor="email"

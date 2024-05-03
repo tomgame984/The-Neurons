@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
+
 export const SignupPage = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -15,11 +16,22 @@ export const SignupPage = () => {
   const [neurodiversity, setNeurodiversity] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      console.log("redirecting...:");
-      await signup(name, surname, email, password, neurodiversity);
+const handleSubmit = async (event) => {
+event.preventDefault();
+try {
+    console.log("redirecting...:");
+    await signup(name, surname, email, password, neurodiversity);
+
+    navigate("/");
+} catch (err) {
+    console.log("i am here")
+    console.error(err);
+    console.log("line break")
+    console.error("error msg", err.message);
+    setErrorMessage(err.message)
+    navigate("/signup");
+}
+};
 
       navigate("/");
     } catch (err) {
@@ -54,14 +66,6 @@ export const SignupPage = () => {
 
   // const ref = useRef(null);
 
-  // const toggle = () => {
-  // if (!ref.current) return;
-  // if (ref.current.isRunning) {
-  //     ref.current.stop();
-  // } else {
-  //     ref.current.start();
-  // }
-  // };
   return (
     <>
       <img src="/src/assets/image.png" style={{height: "100px", margin: "auto"}}></img>
