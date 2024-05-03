@@ -101,7 +101,7 @@ export const Dashboard = () => {
           >
             <p role="event-category">Category: {events[eventId].category}</p>
             <p role="event-description">Description: {events[eventId].description}</p>
-          </div>
+          </Box>
         ))}
       </div>
     </>
