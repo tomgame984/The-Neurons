@@ -10,11 +10,15 @@ import { Box, Container } from "@mui/material";
 export const Dashboard = () => {
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState("");
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
+  const handleCategoryChange = (name) => {
+    setCategory(name)
+  };
   const [events, setEvent] = useState({});
 
   useEffect(() => {
@@ -48,7 +52,6 @@ export const Dashboard = () => {
         padding: "20px", 
         }}
       >
-     
         <div>
           <h1 style={{ textAlign: "center", marginBottom: "20px"}}>Energy Counter</h1>
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -59,6 +62,7 @@ export const Dashboard = () => {
             count={count}
             open={open}
             handleOpen={handleOpen}
+            handleCategoryChange={handleCategoryChange}
             id="buttons"
           />
           <ActivityForm
@@ -66,6 +70,8 @@ export const Dashboard = () => {
             handleOpen={handleOpen}
             count={count}
             setCount={setCount}
+            category={category}
+            handleCategoryChange={handleCategoryChange}
           />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ResetButton setCount={setCount} />
@@ -101,7 +107,7 @@ export const Dashboard = () => {
           >
             <p role="event-category">Category: {events[eventId].category}</p>
             <p role="event-description">Description: {events[eventId].description}</p>
-          </div>
+          </Box>
         ))}
       </div>
     </>

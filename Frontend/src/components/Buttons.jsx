@@ -48,6 +48,9 @@ const Buttons = (props) => {
     }
   };
 
+  const setCategoryChange=(name) => {
+    props.handleCategoryChange(name)
+  };
 
   return (
     <Box sx={{ height: 100, transform: "translateZ(0px)", flexGrow: 1 }}>
@@ -81,7 +84,7 @@ const Buttons = (props) => {
             tooltipTitle={action.name}
             onClick={() => {
               props.handleOpen();
-              props.handleCategoryChange(action.name);
+              setCategoryChange(action.name);
             }}
             data-testid="speed-dial-action-Increase Speed"
           />
@@ -119,6 +122,7 @@ const Buttons = (props) => {
             tooltipTitle={action.name}
             onClick={() => {
               props.handleOpen();
+              setCategoryChange(action.name);
             }}
             data-testid="speed-dial-action-Decrease Speed"
           />

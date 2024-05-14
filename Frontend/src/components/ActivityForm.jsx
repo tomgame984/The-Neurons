@@ -8,7 +8,6 @@ import { putUserEvent } from "../services/users"
 
 const ActivityForm = (props) => {
   const [increment, setIncrement] = useState("")
-  const [category, setcategory] = useState("");
   const [description, setdescription] = useState("");
   const [score, setscore] = useState();
   
@@ -36,9 +35,6 @@ const ActivityForm = (props) => {
     }
   };
   
-  const handleCategoryChange = (event) => {
-    setcategory(event.target.value);
-  };
   const handleDescriptionChange = (event) => {
     setdescription(event.target.value);
   };
@@ -52,7 +48,7 @@ const ActivityForm = (props) => {
     const userid = localStorage.getItem("userId")
     console.log(token, userid)
     const userActivity = {
-      category: "Work",
+      category: props.category,
       description: description,
       eventScore:score
     }
@@ -99,6 +95,7 @@ const ActivityForm = (props) => {
               handleActivitySubmitToDB()
               incrementCounter(increment);
               props.handleOpen();
+              props.handleCategoryChange(action.name);
             }}
             sx={{ display: "block", marginInline: "auto", marginTop: "10px", marginBottom: "10px"}}
           >Submit
